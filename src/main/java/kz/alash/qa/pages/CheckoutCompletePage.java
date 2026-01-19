@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,18 +13,18 @@ import java.time.Duration;
 
 public class CheckoutCompletePage {
     private static final Logger logger = LogManager.getLogger(CheckoutCompletePage.class);
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     // Locators
-    private By completeTitle = By.className("title");
-    private By completeHeader = By.className("complete-header");
-    private By completeText = By.className("complete-text");
-    private By backHomeButton = By.id("back-to-products");
+    private final By completeTitle = By.className("title");
+    private final By completeHeader = By.className("complete-header");
+    private final By completeText = By.className("complete-text");
+    private final By backHomeButton = By.id("back-to-products");
 
     public CheckoutCompletePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         PageFactory.initElements(driver, this);
         logger.info("CheckoutCompletePage initialized");
     }
@@ -54,13 +53,13 @@ public class CheckoutCompletePage {
         return text;
     }
 
-    public ProductsPage clickBackHome() {
+    public void clickBackHome() {
         logger.info("Clicking back home button");
         WebElement backHomeBtn = wait.until(ExpectedConditions.elementToBeClickable(backHomeButton));
         backHomeBtn.click();
 
         logger.info("Navigating back to products page");
-        return new ProductsPage(driver);
+        new ProductsPage(driver);
     }
 
     public boolean isOrderComplete() {

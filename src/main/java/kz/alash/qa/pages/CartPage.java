@@ -5,32 +5,33 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class CartPage {
     private static final Logger logger = LogManager.getLogger(CartPage.class);
-    private WebDriver driver;
-    private WebDriverWait wait;
+    public static final String INVENTORY_ITEM_NAME = "inventory_item_name";
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     // Locators
-    private By cartTitle = By.className("title");
-    private By cartItems = By.className("cart_item");
-    private By cartItemNames = By.className("inventory_item_name");
-    private By cartItemPrices = By.className("inventory_item_price");
-    private By removeButtons = By.cssSelector("button[data-test*='remove']");
-    private By continueShoppingButton = By.id("continue-shopping");
-    private By checkoutButton = By.id("checkout");
-    private By cartQuantity = By.className("cart_quantity");
+    private final By cartTitle = By.className("title");
+    private final By cartItems = By.className("cart_item");
+
+    static {
+        By.className("inventory_item_price");
+    }
+
+    private final By checkoutButton = By.id("checkout");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         PageFactory.initElements(driver, this);
         logger.info("CartPage initialized");
     }
@@ -51,20 +52,13 @@ public class CartPage {
         return items.size();
     }
 
-    public List<String> getCartItemNames() {
-        List<WebElement> nameElements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItemNames));
-        List<String> names = nameElements.stream().map(WebElement::getText).toList();
-        logger.info("Cart contains items: {}", names);
-        return names;
-    }
-
     public void removeItemFromCart(String productName) {
         logger.info("Removing item from cart: {}", productName);
 
         List<WebElement> cartItemElements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItems));
 
         for (WebElement item : cartItemElements) {
-            WebElement nameElement = item.findElement(By.className("inventory_item_name"));
+            WebElement nameElement = item.findElement(By.className(INVENTORY_ITEM_NAME));
             if (nameElement.getText().equals(productName)) {
                 WebElement removeButton = item.findElement(By.cssSelector("button[data-test*='remove']"));
                 removeButton.click();
@@ -73,16 +67,7 @@ public class CartPage {
             }
         }
 
-        throw new RuntimeException("Product not found in cart: " + productName);
-    }
-
-    public ProductsPage clickContinueShopping() {
-        logger.info("Clicking continue shopping button");
-        WebElement continueBtn = wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
-        continueBtn.click();
-
-        logger.info("Navigating back to products page");
-        return new ProductsPage(driver);
+        throw new NoSuchElementException("Product not found in cart: " + productName);
     }
 
     public CheckoutPage clickCheckout() {
@@ -102,19 +87,5 @@ public class CartPage {
             logger.debug("Cart appears to be empty");
             return true;
         }
-    }
-
-    public String getCartQuantity(String productName) {
-        List<WebElement> cartItemElements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartItems));
-
-        for (WebElement item : cartItemElements) {
-            WebElement nameElement = item.findElement(By.className("inventory_item_name"));
-            if (nameElement.getText().equals(productName)) {
-                WebElement quantityElement = item.findElement(By.className("cart_quantity"));
-                return quantityElement.getText();
-            }
-        }
-
-        return "0";
     }
 }

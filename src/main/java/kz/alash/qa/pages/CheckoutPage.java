@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,33 +13,20 @@ import java.time.Duration;
 
 public class CheckoutPage {
     private static final Logger logger = LogManager.getLogger(CheckoutPage.class);
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     // Locators
-    private By checkoutTitle = By.className("title");
-    private By firstNameField = By.id("first-name");
-    private By lastNameField = By.id("last-name");
-    private By postalCodeField = By.id("postal-code");
-    private By continueButton = By.id("continue");
-    private By cancelButton = By.id("cancel");
-    private By errorMessage = By.cssSelector("[data-test='error']");
+    private final By firstNameField = By.id("first-name");
+    private final By lastNameField = By.id("last-name");
+    private final By postalCodeField = By.id("postal-code");
+    private final By continueButton = By.id("continue");
 
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         PageFactory.initElements(driver, this);
         logger.info("CheckoutPage initialized");
-    }
-
-    public boolean isCheckoutPageDisplayed() {
-        try {
-            WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutTitle));
-            return title.getText().equals("Checkout: Your Information");
-        } catch (Exception e) {
-            logger.debug("Checkout page not displayed");
-            return false;
-        }
     }
 
     public void enterFirstName(String firstName) {
@@ -78,30 +64,5 @@ public class CheckoutPage {
         enterLastName(lastName);
         enterPostalCode(postalCode);
         return clickContinue();
-    }
-
-    public CartPage clickCancel() {
-        logger.info("Clicking cancel button on checkout page");
-        WebElement cancelBtn = wait.until(ExpectedConditions.elementToBeClickable(cancelButton));
-        cancelBtn.click();
-
-        logger.info("Navigating back to cart page");
-        return new CartPage(driver);
-    }
-
-    public String getErrorMessage() {
-        WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
-        String errorText = errorElement.getText();
-        logger.info("Checkout error message: {}", errorText);
-        return errorText;
-    }
-
-    public boolean isErrorMessageDisplayed() {
-        try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).isDisplayed();
-        } catch (Exception e) {
-            logger.debug("Checkout error message not displayed");
-            return false;
-        }
     }
 }

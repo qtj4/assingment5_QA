@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,22 +13,21 @@ import java.time.Duration;
 
 public class LoginPage {
     private static final Logger logger = LogManager.getLogger(LoginPage.class);
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     // Page URL
     private static final String URL = "https://www.saucedemo.com/";
 
     // Locators
-    private By usernameField = By.id("user-name");
-    private By passwordField = By.id("password");
-    private By loginButton = By.id("login-button");
-    private By errorMessage = By.cssSelector("[data-test='error']");
-    private By appLogo = By.className("app_logo");
+    private final By usernameField = By.id("user-name");
+    private final By passwordField = By.id("password");
+    private final By loginButton = By.id("login-button");
+    private final By errorMessage = By.cssSelector("[data-test='error']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         PageFactory.initElements(driver, this);
         logger.info("LoginPage initialized");
     }
@@ -37,7 +35,25 @@ public class LoginPage {
     public void navigateToLoginPage() {
         logger.info("Navigating to SauceDemo login page: {}", URL);
         driver.get(URL);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(appLogo));
+        try {
+            // Wait for page to load by checking title first
+            wait.until(ExpectedConditions.titleContains("Swag Labs"));
+            // Then wait for username field
+            wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
+            logger.info("Login page loaded successfully");
+        } catch (Exception e) {
+            logger.error("Failed to load login page, checking page source...");
+            logger.debug("Page title: {}", driver.getTitle());
+            logger.debug("Current URL: {}", driver.getCurrentUrl());
+            // Try to find any input elements as fallback
+            try {
+                driver.findElement(By.tagName("input"));
+                logger.debug("Found input elements on page");
+            } catch (Exception e2) {
+                logger.debug("No input elements found either");
+            }
+            throw e;
+        }
     }
 
     public void enterUsername(String username) {
@@ -65,6 +81,13 @@ public class LoginPage {
         return new ProductsPage(driver);
     }
 
+    public void clickLoginButtonWithoutWait() {
+        logger.info("Clicking login button (without waiting for navigation)");
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+        loginBtn.click();
+        logger.info("Login button clicked");
+    }
+
     public ProductsPage performLogin(String username, String password) {
         enterUsername(username);
         enterPassword(password);
@@ -89,7 +112,7 @@ public class LoginPage {
 
     public boolean isLoginPageDisplayed() {
         try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(appLogo)).isDisplayed();
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField)).isDisplayed();
         } catch (Exception e) {
             logger.debug("Login page not displayed");
             return false;

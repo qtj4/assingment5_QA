@@ -90,8 +90,14 @@ public class SauceDemoTests extends BaseTest {
         // Attempt login with invalid credentials
         loginPage.enterUsername(INVALID_USERNAME);
         loginPage.enterPassword(INVALID_PASSWORD);
-        loginPage.clickLoginButton();
+        loginPage.clickLoginButtonWithoutWait();
         logStep("Entered invalid credentials and clicked login");
+
+        // For invalid login, we should NOT redirect to inventory page
+        // So we need to check that we're still on the login page
+        Assert.assertTrue(loginPage.isLoginPageDisplayed(),
+            "Should remain on login page after invalid login attempt");
+        logStep("User correctly remains on login page after invalid credentials");
 
         // Verify error message is displayed
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(),

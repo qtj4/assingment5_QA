@@ -64,6 +64,8 @@ public class BaseTest {
             options.addArguments("--headless");
             options.addArguments("--disable-gpu");
             options.addArguments("--window-size=1920,1080");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
             driver = new ChromeDriver(options);
         }
 
@@ -167,13 +169,6 @@ public class BaseTest {
         logger.info("STEP: {}", message);
         if (test != null) {
             test.log(Status.INFO, message);
-        }
-    }
-
-    protected void logError(String message) {
-        logger.error("ERROR: {}", message);
-        if (test != null) {
-            test.log(Status.FAIL, message);
         }
     }
 }
