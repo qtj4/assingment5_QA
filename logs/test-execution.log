@@ -1,0 +1,61 @@
+2026-01-19 10:40:55.683 [main] INFO  kz.alash.qa.base.BaseTest - === Starting Test Suite Execution ===
+2026-01-19 10:40:57.865 [main] INFO  kz.alash.qa.base.BaseTest - ExtentReports setup completed at: test-output/ExtentReports/TestReport_2026-01-19_10-40-57.html
+2026-01-19 10:40:57.866 [main] INFO  kz.alash.qa.base.BaseTest - Directories created successfully
+2026-01-19 10:40:57.889 [main] INFO  kz.alash.qa.base.BaseTest - === Setting up test: testValidLogin ===
+2026-01-19 10:40:59.224 [main] INFO  kz.alash.qa.base.BaseTest - WebDriver initialized successfully for browser: chrome
+2026-01-19 10:40:59.225 [main] INFO  kz.alash.qa.base.BaseTest - STEP: Starting TC-LOGIN-001: Valid Login Test
+2026-01-19 10:40:59.231 [main] INFO  kz.alash.qa.pages.LoginPage - LoginPage initialized
+2026-01-19 10:40:59.231 [main] INFO  kz.alash.qa.pages.LoginPage - Navigating to SauceDemo login page: https://www.saucedemo.com/
+2026-01-19 10:41:11.693 [main] INFO  kz.alash.qa.base.BaseTest - === Tearing down test: testValidLogin ===
+2026-01-19 10:41:11.694 [main] ERROR kz.alash.qa.base.BaseTest - Test failed: Expected condition failed: waiting for visibility of element located by By.className: app_logo (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.15.0', revision: '1d14b5521b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.194, chrome: {chromedriverVersion: 143.0.7499.192 (be2c1f4fd45..., userDataDir: C:\Users\temir\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65471}, goog:processID: 24060, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65471/devtoo..., se:cdpVersion: 143.0.7499.194, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8a7ceca94d1dbe57db69d9e03c949997
+2026-01-19 10:41:11.776 [main] INFO  kz.alash.qa.base.BaseTest - Screenshot captured: test-output/Screenshots/testValidLogin_2026-01-19_10-41-11.png
+2026-01-19 10:41:12.027 [main] INFO  kz.alash.qa.base.BaseTest - WebDriver closed successfully
+2026-01-19 10:41:12.029 [main] INFO  kz.alash.qa.base.BaseTest - === Setting up test: testInvalidLogin ===
+2026-01-19 10:41:12.777 [main] INFO  kz.alash.qa.base.BaseTest - WebDriver initialized successfully for browser: chrome
+2026-01-19 10:41:12.777 [main] INFO  kz.alash.qa.base.BaseTest - STEP: Starting TC-LOGIN-002: Invalid Login Test
+2026-01-19 10:41:12.777 [main] INFO  kz.alash.qa.pages.LoginPage - LoginPage initialized
+2026-01-19 10:41:12.777 [main] INFO  kz.alash.qa.pages.LoginPage - Navigating to SauceDemo login page: https://www.saucedemo.com/
+2026-01-19 10:41:26.862 [main] INFO  kz.alash.qa.base.BaseTest - === Tearing down test: testInvalidLogin ===
+2026-01-19 10:41:26.862 [main] ERROR kz.alash.qa.base.BaseTest - Test failed: Expected condition failed: waiting for visibility of element located by By.className: app_logo (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.15.0', revision: '1d14b5521b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.194, chrome: {chromedriverVersion: 143.0.7499.192 (be2c1f4fd45..., userDataDir: C:\Users\temir\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58260}, goog:processID: 9016, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58260/devtoo..., se:cdpVersion: 143.0.7499.194, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 6afeaa2c8b796fabbb7c69bfa4232747
+2026-01-19 10:41:26.932 [main] INFO  kz.alash.qa.base.BaseTest - Screenshot captured: test-output/Screenshots/testInvalidLogin_2026-01-19_10-41-26.png
+2026-01-19 10:41:27.115 [main] INFO  kz.alash.qa.base.BaseTest - WebDriver closed successfully
+2026-01-19 10:41:27.117 [main] INFO  kz.alash.qa.base.BaseTest - === Setting up test: testAddAndRemoveFromCart ===
+2026-01-19 10:41:27.775 [main] INFO  kz.alash.qa.base.BaseTest - WebDriver initialized successfully for browser: chrome
+2026-01-19 10:41:27.775 [main] INFO  kz.alash.qa.base.BaseTest - STEP: Starting TC-CART-001: Add and Remove Product from Cart
+2026-01-19 10:41:27.775 [main] INFO  kz.alash.qa.pages.LoginPage - LoginPage initialized
+2026-01-19 10:41:27.775 [main] INFO  kz.alash.qa.pages.LoginPage - Navigating to SauceDemo login page: https://www.saucedemo.com/
+2026-01-19 10:41:39.873 [main] INFO  kz.alash.qa.base.BaseTest - === Tearing down test: testAddAndRemoveFromCart ===
+2026-01-19 10:41:39.873 [main] ERROR kz.alash.qa.base.BaseTest - Test failed: Expected condition failed: waiting for visibility of element located by By.className: app_logo (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.15.0', revision: '1d14b5521b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.194, chrome: {chromedriverVersion: 143.0.7499.192 (be2c1f4fd45..., userDataDir: C:\Users\temir\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50993}, goog:processID: 22296, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50993/devtoo..., se:cdpVersion: 143.0.7499.194, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 2ab9e825666d4a97d1a67ccb2463b677
+2026-01-19 10:41:39.955 [main] INFO  kz.alash.qa.base.BaseTest - Screenshot captured: test-output/Screenshots/testAddAndRemoveFromCart_2026-01-19_10-41-39.png
+2026-01-19 10:41:40.135 [main] INFO  kz.alash.qa.base.BaseTest - WebDriver closed successfully
+2026-01-19 10:41:40.137 [main] INFO  kz.alash.qa.base.BaseTest - === Setting up test: testCompletePurchaseFlow ===
+2026-01-19 10:41:40.925 [main] INFO  kz.alash.qa.base.BaseTest - WebDriver initialized successfully for browser: chrome
+2026-01-19 10:41:40.925 [main] INFO  kz.alash.qa.base.BaseTest - STEP: Starting TC-CHECKOUT-001: Complete Purchase Flow
+2026-01-19 10:41:40.925 [main] INFO  kz.alash.qa.pages.LoginPage - LoginPage initialized
+2026-01-19 10:41:40.925 [main] INFO  kz.alash.qa.pages.LoginPage - Navigating to SauceDemo login page: https://www.saucedemo.com/
+2026-01-19 10:41:53.744 [main] INFO  kz.alash.qa.base.BaseTest - === Tearing down test: testCompletePurchaseFlow ===
+2026-01-19 10:41:53.746 [main] ERROR kz.alash.qa.base.BaseTest - Test failed: Expected condition failed: waiting for visibility of element located by By.className: app_logo (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.15.0', revision: '1d14b5521b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.194, chrome: {chromedriverVersion: 143.0.7499.192 (be2c1f4fd45..., userDataDir: C:\Users\temir\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51388}, goog:processID: 14360, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51388/devtoo..., se:cdpVersion: 143.0.7499.194, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: c17abe54a7f156b49dfc703dfa37e421
+2026-01-19 10:41:53.926 [main] INFO  kz.alash.qa.base.BaseTest - Screenshot captured: test-output/Screenshots/testCompletePurchaseFlow_2026-01-19_10-41-53.png
+2026-01-19 10:41:54.200 [main] INFO  kz.alash.qa.base.BaseTest - WebDriver closed successfully
+2026-01-19 10:41:54.214 [main] INFO  kz.alash.qa.base.BaseTest - === Test Suite Execution Completed ===
+2026-01-19 10:41:55.043 [main] INFO  kz.alash.qa.base.BaseTest - ExtentReports flushed successfully

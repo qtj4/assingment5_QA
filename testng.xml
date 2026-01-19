@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="SauceDemo Test Suite" verbose="1" parallel="none">
+
+    <parameter name="browser" value="chrome"/>
+
+    <listeners>
+        <!-- ExtentReports TestNG Listener -->
+        <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"/>
+    </listeners>
+
+    <test name="SauceDemo Tests" preserve-order="true">
+        <classes>
+            <class name="kz.alash.qa.tests.SauceDemoTests">
+                <methods>
+                    <include name="testValidLogin"/>
+                    <include name="testInvalidLogin"/>
+                    <include name="testAddAndRemoveFromCart"/>
+                    <include name="testCompletePurchaseFlow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
